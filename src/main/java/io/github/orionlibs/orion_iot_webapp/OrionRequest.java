@@ -1,17 +1,16 @@
 package io.github.orionlibs.orion_iot_webapp;
 
-import lombok.AllArgsConstructor;
+import java.io.Serializable;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 @NoArgsConstructor
-@AllArgsConstructor
 @SuperBuilder
 @Getter
 @Setter
-public class RequestBean extends OrionRequest
+public class OrionRequest implements Serializable
 {
-    private String field1;
+    private String internalUse;
 }

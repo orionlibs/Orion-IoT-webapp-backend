@@ -1,6 +1,5 @@
 package io.github.orionlibs.orion_iot_webapp;
 
-import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,7 +11,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @Getter
 @Setter
-public class ResponseBean implements Serializable
+public class ResponseBean extends OrionResponse
 {
     private Long field1;
     private String field2;

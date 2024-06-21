@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.core.util.MinimalPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import io.github.orionlibs.orion_iot.OrionDomain;
+import io.github.orionlibs.orion_iot.Setup;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -23,6 +25,13 @@ public class OrionIoTWebApplicationBackEndApplication
     public static void main(String[] args)
     {
         SpringApplication.run(OrionIoTWebApplicationBackEndApplication.class, args);
+        System.setProperty("active.execution.profile", OrionDomain.production);
+        Setup.setup();
+        //System.out.println("------" + ConfigurationService.getProp("orionlibs.orion-iot.database.of.iot.device.data.name"));
+        //Properties customConfig = new Properties();
+        //customConfig.put("orionlibs.orion-iot.database.of.iot.device.data.name", "iot_devices_temp22222");
+        //ConfigurationService.updateProps(customConfig);
+        //System.out.println("------" + ConfigurationService.getProp("orionlibs.orion-iot.database.of.iot.device.data.name"));
     }
 
 

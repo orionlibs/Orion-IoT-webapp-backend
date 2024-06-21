@@ -27,11 +27,9 @@ public class OrionIoTWebApplicationBackEndApplication
         SpringApplication.run(OrionIoTWebApplicationBackEndApplication.class, args);
         System.setProperty("active.execution.profile", OrionDomain.production);
         Setup.setup();
-        //System.out.println("------" + ConfigurationService.getProp("orionlibs.orion-iot.database.of.iot.device.data.name"));
         //Properties customConfig = new Properties();
         //customConfig.put("orionlibs.orion-iot.database.of.iot.device.data.name", "iot_devices_temp22222");
         //ConfigurationService.updateProps(customConfig);
-        //System.out.println("------" + ConfigurationService.getProp("orionlibs.orion-iot.database.of.iot.device.data.name"));
     }
 
 

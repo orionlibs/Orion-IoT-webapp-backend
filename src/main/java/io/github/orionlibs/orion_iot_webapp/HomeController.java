@@ -1,5 +1,7 @@
 package io.github.orionlibs.orion_iot_webapp;
 
+import io.github.orionlibs.core.data.source.database.Database;
+import io.github.orionlibs.orion_iot.database.IoTDatabase;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -36,6 +38,6 @@ public class HomeController
     @GetMapping(value = "/number-of-iot-devices")
     public @ResponseBody Long homePageGetNumberOfIoTDevices()
     {
-        return 14L;
+        return Database.getNumberOfRecords(IoTDatabase.tableDevices, IoTDatabase.deviceDataDatabaseName);
     }
 }

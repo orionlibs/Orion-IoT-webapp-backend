@@ -1,17 +1,15 @@
 package io.github.orionlibs.orion_iot_webapp;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/api/v1")
+@RequestMapping(value = "/api/v1/home")
 public class HomeController
 {
-    @GetMapping(value = "/test-url")
+    /*@GetMapping(value = "/test-url")
     public ResponseEntity<ResponseBean> testURL1()
     {
         //MQTTMessageBrokerClient client = new MQTTMessageBrokerClient("topic1", "tcp://0.0.0.0:1883", "client1");
@@ -32,5 +30,12 @@ public class HomeController
                         .field2(requestBean.getField1())
                         .build();
         return ResponseEntity.ok(result1);
+    }*/
+
+
+    @GetMapping(value = "/number-of-iot-devices")
+    public @ResponseBody Long homePageGetNumberOfIoTDevices()
+    {
+        return 14L;
     }
 }

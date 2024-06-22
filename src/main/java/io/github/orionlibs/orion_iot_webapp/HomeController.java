@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/api/v1/home")
+@RequestMapping(value = "/api/v1/dashboard")
 public class HomeController
 {
     /*@GetMapping(value = "/test-url")
@@ -36,7 +36,7 @@ public class HomeController
 
 
     @GetMapping(value = "/number-of-iot-devices")
-    public @ResponseBody Long homePageGetNumberOfIoTDevices()
+    public @ResponseBody Long dashboardPageGetNumberOfIoTDevices()
     {
         return Database.getNumberOfRecords(IoTDatabase.tableDevices, IoTDatabase.deviceDataDatabaseName);
     }

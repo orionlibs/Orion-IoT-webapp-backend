@@ -1,7 +1,5 @@
 package io.github.orionlibs.orion_iot_webapp;
 
-import static org.springframework.security.config.Customizer.withDefaults;
-
 import java.util.Arrays;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,14 +9,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configurers.AuthorizeHttpRequestsConfigurer;
 import org.springframework.security.config.annotation.web.configurers.CorsConfigurer;
 import org.springframework.security.config.annotation.web.configurers.CsrfConfigurer;
-import org.springframework.security.config.annotation.web.configurers.FormLoginConfigurer;
 import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
 import org.springframework.security.config.annotation.web.configurers.SessionManagementConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.header.writers.ReferrerPolicyHeaderWriter.ReferrerPolicy;
@@ -30,17 +23,10 @@ import org.springframework.web.cors.CorsConfiguration;
 public class SecurityConfig
 {
     @Bean
-    public UserDetailsService userDetailsService()
-    {
-        UserDetails user = User.withDefaultPasswordEncoder().username("user").password("pass").roles("USER").build();
-        return new InMemoryUserDetailsManager(user);
-    }
-
-
-    @Bean
     public Customizer<CsrfConfigurer<HttpSecurity>> csrfCustomizer()
     {
-        return csrf -> csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+        return csrf -> csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                        .ignoringRequestMatchers("/**");
     }
 
 
@@ -104,21 +90,19 @@ public class SecurityConfig
     @Bean
     public Customizer<HeadersConfigurer<HttpSecurity>> headersCustomizer()
     {
-        return http -> http.referrerPolicy(referrerPolicyCustomizer()).xssProtection(xssCustomizer()).httpStrictTransportSecurity(hstsCustomizer()).contentSecurityPolicy(contentSecurityCustomizer()).cacheControl(cacheControlCustomizer());
+        return http -> http.referrerPolicy(referrerPolicyCustomizer())
+                        .xssProtection(xssCustomizer())
+                        .httpStrictTransportSecurity(hstsCustomizer())
+                        .contentSecurityPolicy(contentSecurityCustomizer())
+                        .cacheControl(cacheControlCustomizer());
     }
 
 
     @Bean
     public Customizer<AuthorizeHttpRequestsConfigurer<HttpSecurity>.AuthorizationManagerRequestMatcherRegistry> authorizeHttpRequestsCustomizer()
     {
-        return http -> http.requestMatchers("/api/v1/**").permitAll().anyRequest().denyAll();
-    }
-
-
-    @Bean
-    public Customizer<FormLoginConfigurer<HttpSecurity>> formLoginCustomizer()
-    {
-        return http -> http.disable();
+        return http -> http.requestMatchers("/**").anonymous()
+                        .anyRequest().permitAll();
     }
 
 
@@ -129,9 +113,7 @@ public class SecurityConfig
                         .csrf(csrfCustomizer())
                         .headers(headersCustomizer())
                         .sessionManagement(sessionManagementCustomizer())
-                        .authorizeHttpRequests(authorizeHttpRequestsCustomizer())
-                        .httpBasic(withDefaults())
-                        .formLogin(formLoginCustomizer());
+                        .authorizeHttpRequests(authorizeHttpRequestsCustomizer());
         return http.build();
     }
 }

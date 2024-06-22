@@ -19,7 +19,7 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 
 @SpringBootApplication
 @EnableWebMvc
-@Import({HomeController.class})
+@Import({DashboardController.class})
 public class OrionIoTWebApplicationBackEndApplication
 {
     public static void main(String[] args)

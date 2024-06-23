@@ -14,7 +14,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class IoTDevicesLiveController
 {
-    private static int i = 0;
     @Autowired
     private SimpMessagingTemplate messagingTemplate;
 
@@ -29,14 +28,13 @@ public class IoTDevicesLiveController
             for(DeviceModel device : devices)
             {
                 devicesTemp.add(IotDevicesSummariesResponseBean.DeviceModel.builder()
-                                .deviceID(device.getDeviceID() + i)
-                                .deviceName(device.getDeviceName() + "-" + i)
+                                .deviceID(device.getDeviceID())
+                                .deviceName(device.getDeviceName())
                                 .build());
             }
             IotDevicesSummariesResponseBean responseBean = IotDevicesSummariesResponseBean.builder()
                             .devices(devicesTemp)
                             .build();
-            i++;
             this.messagingTemplate.convertAndSend("/topic/iot-devices-live/summaries", responseBean);
         }
         catch(Throwable e)

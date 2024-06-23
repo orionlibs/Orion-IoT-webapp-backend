@@ -12,6 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.servlet.HandlerAdapter;
 import org.springframework.web.servlet.HandlerMapping;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -20,6 +21,7 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 
 @SpringBootApplication
 @EnableWebMvc
+@EnableScheduling
 @Import({DashboardController.class})
 public class OrionIoTWebApplicationBackEndApplication
 {

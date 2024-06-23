@@ -36,7 +36,7 @@ public class SecurityConfig
         return cors -> cors.configurationSource(request -> {
             CorsConfiguration config = new CorsConfiguration();
             config.setAllowedOrigins(Arrays.asList("http://localhost:8081"));
-            config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+            config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "websocket", "ws"));
             config.setAllowedHeaders(Arrays.asList("*"));
             config.setAllowCredentials(true);
             config.setMaxAge(3600L);

@@ -18,21 +18,6 @@ public class IoTDevicesController
     @GetMapping(value = "/summaries")
     public ResponseEntity<IotDevicesSummariesResponseBean> iotDevicesPageSummaries()
     {
-        DeviceDAO.save(DeviceModel.builder()
-                        .deviceName("device 1")
-                        .build());
-        DeviceDAO.save(DeviceModel.builder()
-                        .deviceName("device 2")
-                        .build());
-        DeviceDAO.save(DeviceModel.builder()
-                        .deviceName("device 3")
-                        .build());
-        DeviceDAO.save(DeviceModel.builder()
-                        .deviceName("device 4")
-                        .build());
-        DeviceDAO.save(DeviceModel.builder()
-                        .deviceName("device 5")
-                        .build());
         List<DeviceModel> devices = DeviceDAO.getAllWithAscendingOrder(IoTDatabase.deviceID);
         List<IotDevicesSummariesResponseBean.DeviceModel> devicesTemp = new ArrayList<>();
         for(DeviceModel device : devices)

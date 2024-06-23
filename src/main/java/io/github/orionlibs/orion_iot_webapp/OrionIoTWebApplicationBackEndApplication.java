@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import io.github.orionlibs.orion_iot.OrionDomain;
 import io.github.orionlibs.orion_iot.Setup;
+import io.github.orionlibs.orion_iot_webapp.page.DashboardController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;

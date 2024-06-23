@@ -1,7 +1,6 @@
-package io.github.orionlibs.orion_iot_webapp;
+package io.github.orionlibs.orion_iot_webapp.page;
 
-import io.github.orionlibs.core.data.source.database.Database;
-import io.github.orionlibs.orion_iot.database.IoTDatabase;
+import io.github.orionlibs.orion_iot.device_details.DeviceDAO;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -38,6 +37,6 @@ public class DashboardController
     @GetMapping(value = "/number-of-iot-devices")
     public @ResponseBody Long dashboardPageGetNumberOfIoTDevices()
     {
-        return Database.getNumberOfRecords(IoTDatabase.tableDevices, IoTDatabase.deviceDataDatabaseName);
+        return DeviceDAO.getNumberOfRecords();
     }
 }

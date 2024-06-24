@@ -18,7 +18,7 @@ public class IoTDevicesLiveController
     private SimpMessagingTemplate messagingTemplate;
 
 
-    @Scheduled(fixedRate = 3000)
+    @Scheduled(initialDelay = 5000, fixedRate = 3000)
     public void iotDevicesLivePageSummaries()
     {
         try
@@ -30,6 +30,7 @@ public class IoTDevicesLiveController
                 devicesTemp.add(IotDevicesSummariesResponseBean.DeviceModel.builder()
                                 .deviceID(device.getDeviceID())
                                 .deviceName(device.getDeviceName())
+                                .connectionURL(device.getConnectionURL())
                                 .build());
             }
             IotDevicesSummariesResponseBean responseBean = IotDevicesSummariesResponseBean.builder()

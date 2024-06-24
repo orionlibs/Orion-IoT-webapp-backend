@@ -25,6 +25,7 @@ public class IoTDevicesController
             devicesTemp.add(IotDevicesSummariesResponseBean.DeviceModel.builder()
                             .deviceID(device.getDeviceID())
                             .deviceName(device.getDeviceName())
+                            .connectionURL(device.getConnectionURL())
                             .build());
         }
         return ResponseEntity.ok(IotDevicesSummariesResponseBean.builder()

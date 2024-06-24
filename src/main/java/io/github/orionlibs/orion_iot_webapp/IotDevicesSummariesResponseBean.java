@@ -28,5 +28,6 @@ public class IotDevicesSummariesResponseBean extends OrionResponse
     {
         private Long deviceID;
         private String deviceName;
+        private String connectionURL;
     }
 }

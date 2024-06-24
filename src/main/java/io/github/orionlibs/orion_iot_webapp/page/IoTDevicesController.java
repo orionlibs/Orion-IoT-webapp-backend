@@ -1,8 +1,9 @@
 package io.github.orionlibs.orion_iot_webapp.page;
 
 import io.github.orionlibs.orion_iot.database.IoTDatabase;
-import io.github.orionlibs.orion_iot.device_details.DeviceDAO;
 import io.github.orionlibs.orion_iot.device_details.DeviceModel;
+import io.github.orionlibs.orion_iot.device_details.DevicesDAO;
+import io.github.orionlibs.orion_iot.device_payload.DevicePayloadsDAO;
 import io.github.orionlibs.orion_iot_webapp.IotDevicesSummariesResponseBean;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,7 @@ public class IoTDevicesController
     @GetMapping(value = "/summaries")
     public ResponseEntity<IotDevicesSummariesResponseBean> iotDevicesPageSummaries()
     {
-        List<DeviceModel> devices = DeviceDAO.getAllWithAscendingOrder(IoTDatabase.deviceID);
+        List<DeviceModel> devices = DevicesDAO.getAllWithAscendingOrder(IoTDatabase.deviceID);
         List<IotDevicesSummariesResponseBean.DeviceModel> devicesTemp = new ArrayList<>();
         for(DeviceModel device : devices)
         {
@@ -26,6 +27,7 @@ public class IoTDevicesController
                             .deviceID(device.getDeviceID())
                             .deviceName(device.getDeviceName())
                             .connectionURL(device.getConnectionURL())
+                            .payloads(DevicePayloadsDAO.getNumberOfRecordsForDeviceID(device.getDeviceID()))
                             .build());
         }
         return ResponseEntity.ok(IotDevicesSummariesResponseBean.builder()

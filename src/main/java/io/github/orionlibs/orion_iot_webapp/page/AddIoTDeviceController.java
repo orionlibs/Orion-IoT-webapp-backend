@@ -1,6 +1,6 @@
 package io.github.orionlibs.orion_iot_webapp.page;
 
-import io.github.orionlibs.orion_iot.device_details.DeviceDAO;
+import io.github.orionlibs.orion_iot.device_details.DevicesDAO;
 import io.github.orionlibs.orion_iot.device_details.DeviceModel;
 import io.github.orionlibs.orion_iot_webapp.AddIotDeviceRequestBean;
 import io.github.orionlibs.orion_iot_webapp.AddIotDeviceResponseBean;
@@ -19,7 +19,7 @@ public class AddIoTDeviceController
     {
         try
         {
-            DeviceDAO.save(DeviceModel.builder()
+            DevicesDAO.save(DeviceModel.builder()
                             .deviceName(requestBean.getDeviceName())
                             .connectionURL(requestBean.getConnectionURL())
                             .build());

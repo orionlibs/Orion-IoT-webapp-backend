@@ -1,6 +1,6 @@
 package io.github.orionlibs.orion_iot_webapp.page;
 
-import io.github.orionlibs.orion_iot.device_details.DeviceDAO;
+import io.github.orionlibs.orion_iot.device_details.DevicesDAO;
 import io.github.orionlibs.orion_iot.device_details.DeviceModel;
 import io.github.orionlibs.orion_iot_webapp.EditIotDeviceRequestBean;
 import io.github.orionlibs.orion_iot_webapp.EditIotDeviceResponseBean;
@@ -19,10 +19,10 @@ public class EditIoTDeviceController
     {
         try
         {
-            DeviceModel device = DeviceDAO.getByID(requestBean.getDeviceID());
+            DeviceModel device = DevicesDAO.getByID(requestBean.getDeviceID());
             device.setDeviceName(requestBean.getDeviceName());
             device.setConnectionURL(requestBean.getConnectionURL());
-            DeviceDAO.update(device);
+            DevicesDAO.update(device);
             return ResponseEntity.ok(EditIotDeviceResponseBean.builder().build());
         }
         catch(Throwable e)

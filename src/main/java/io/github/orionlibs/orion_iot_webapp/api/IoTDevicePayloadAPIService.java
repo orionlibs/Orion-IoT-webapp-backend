@@ -6,6 +6,7 @@ import io.github.orionlibs.orion_iot.device_payload.DevicePayloadsDAO;
 import io.github.orionlibs.orion_iot_webapp.AddIotDeviceResponseBean;
 import io.github.orionlibs.orion_iot_webapp.SaveIotDevicePayloadRequestBean;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,26 @@ public class IoTDevicePayloadAPIService
             DevicePayloadsDAO.save(DevicePayloadModel.builder()
                             .topic(requestBean.getTopic())
                             .payload(requestBean.getPayload())
+                            .timestampOfRecord(CalendarService.getCurrentDatetimeAsSQLTimestamp())
+                            .isDeleted(Boolean.FALSE)
+                            .build());
+            return ResponseEntity.ok(AddIotDeviceResponseBean.builder().build());
+        }
+        catch(Throwable e)
+        {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+
+    @PostMapping(value = "/{topic}/{payload}", consumes = "application/json")
+    public ResponseEntity<AddIotDeviceResponseBean> IoTDevicePayloadAPISavePayload2(@PathVariable String topic, @PathVariable String payload)
+    {
+        try
+        {
+            DevicePayloadsDAO.save(DevicePayloadModel.builder()
+                            .topic(topic)
+                            .payload(payload)
                             .timestampOfRecord(CalendarService.getCurrentDatetimeAsSQLTimestamp())
                             .isDeleted(Boolean.FALSE)
                             .build());

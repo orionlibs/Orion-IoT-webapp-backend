@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/api/v1/iot-devices")
+@RequestMapping(value = "/wapi/v1/iot-devices")
 public class AddIoTDeviceController
 {
     @PostMapping(consumes = "application/json")

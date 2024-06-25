@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/api/v1/dashboard")
+@RequestMapping(value = "/wapi/v1/dashboard")
 public class DashboardController
 {
     /*@GetMapping(value = "/test-url")
